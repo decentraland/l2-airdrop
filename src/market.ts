@@ -63,6 +63,6 @@ export async function fetchNftsAddresses(category: string, { output }: { output:
 Promise.resolve()
   .then(async () => {
     const output = argv.output ? createWriteStream(resolve(process.cwd(), argv.output), 'utf8') : process.stdout
-    await  fetchNftsAddresses(argv.catgory, { output })
+    await fetchNftsAddresses(argv.catgory, { output })
     output.end()
   })

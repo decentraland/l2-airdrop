@@ -82,14 +82,18 @@ createReadStream(resolve(process.cwd(), argv.input))
     decodeStrings: true,
     objectMode: true,
     transform(chuck: string[], encoding: string, callback) {
-
       Promise.resolve()
         .then(async () => {
           const hash = await issueTokens(argv.contract, chuck, chuck.map(() => argv.token))
+          await (new Promise<void>(resolve => setTimeout(() => resolve(), 5000)))
           this.push(`tx: ${hash}\n${chuck.map(c => '  ' + c + '\n').join('')}\n`)
         })
         .then(() => callback())
-        .catch((err) => callback(err))
+        .catch((err) => {
+          console.log(err, JSON.stringify(err))
+          callback(err)
+        })
     }
   }))
   .pipe(output)
+  .on('error', (err) => console.error(err))
