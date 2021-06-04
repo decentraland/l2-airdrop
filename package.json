@@ -5,6 +5,7 @@
   "scripts": {
     "poap": "ts-node -r dotenv/config ./src/poap.ts",
     "market": "ts-node -r dotenv/config ./src/market.ts",
+    "mana": "ts-node -r dotenv/config ./src/mana.ts",
     "send": "ts-node -r dotenv/config ./src/send.ts"
   },
   "repository": {
