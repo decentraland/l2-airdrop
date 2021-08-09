@@ -5,6 +5,16 @@ import type { Wallet } from '@ethersproject/wallet'
 import { signTypedData_v4 } from 'eth-sig-util'
 
 export default class Provider extends JsonRpcProvider {
+  static Empty(chainId: ChainId) {
+    return new JsonRpcProvider(
+      {
+        url: RPC_URLS[chainId],
+        headers: { 'Referer': 'https://decentraland.org' }
+      },
+      chainId
+    )
+  }
+
   wallet: Wallet;
 
   constructor(wallet: Wallet, chainId: ChainId) {

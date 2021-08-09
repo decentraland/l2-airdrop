@@ -7,10 +7,9 @@ import yargs from 'yargs/yargs'
 import { hideBin } from 'yargs/helpers'
 import isEthereumAddress from 'validator/lib/isEthereumAddress'
 import issueTokens from './utils/issueTokens'
+// import Provider from './utils/Provider'
 
 global.fetch = fetch
-
-// const eventIds = process.argv.slice(2).map(Number).filter(n => Number.isFinite(n))
 
 const argv = yargs(hideBin(process.argv))
   .option('input', {
@@ -28,10 +27,8 @@ const argv = yargs(hideBin(process.argv))
     type: 'string',
     demandOption: true,
   })
-  .option('token', {
-    alias: 't',
-    type: 'number',
-    demandOption: true,
+  .option('default-item', {
+    type: 'number'
   })
   .option('output', {
     alias: 'o',
@@ -39,15 +36,13 @@ const argv = yargs(hideBin(process.argv))
   })
   .argv as any
 
+// metatransactions
+// const provider = Provider.Empty(POLYGON_CHAIN_ID)
 const output = argv.output ? createWriteStream(resolve(process.cwd(), argv.output), 'utf8') : process.stdout
 createReadStream(resolve(process.cwd(), argv.input))
-  .pipe(split())
-  // .pipe(batch2(
-  //   { size: 5 },
-  //   (address, encoding, callback) => {
 
-  //   }
-  // ))
+  .pipe(split())
+
   .pipe(new Transform({
     decodeStrings: true,
     objectMode: true,
@@ -57,9 +52,12 @@ createReadStream(resolve(process.cwd(), argv.input))
       }
 
       const addresses: string[] = (this as any).addresses
-      const address = chuck.toString()
-      if (isEthereumAddress(address)) {
-        addresses.push(address)
+      let [address, token] = chuck.toString().split(',')
+      if (
+        isEthereumAddress(address) &&
+        token && Number.isFinite(Number(token))
+      ) {
+        addresses.push([address, token].join(','))
       }
 
       if (addresses.length >= argv.batch) {
@@ -84,9 +82,10 @@ createReadStream(resolve(process.cwd(), argv.input))
     transform(chuck: string[], encoding: string, callback) {
       Promise.resolve()
         .then(async () => {
-          const hash = await issueTokens(argv.contract, chuck, chuck.map(() => argv.token))
-          await (new Promise<void>(resolve => setTimeout(() => resolve(), 5000)))
-          this.push(`tx: ${hash}\n${chuck.map(c => '  ' + c + '\n').join('')}\n`)
+          const beneficieries = chuck.map(line => line.split(',')[0])
+          const tokens = chuck.map(line => line.split(',')[1])
+          const hash = await issueTokens(argv.contract, beneficieries, tokens)
+          this.push(`https://polygonscan.com/tx/${hash}\n${chuck.map(c => '  ' + c + '\n').join('')}\n`)
         })
         .then(() => callback())
         .catch((err) => {
