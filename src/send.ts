@@ -7,37 +7,35 @@ import yargs from 'yargs/yargs'
 import { hideBin } from 'yargs/helpers'
 import isEthereumAddress from 'validator/lib/isEthereumAddress'
 import issueTokens from './utils/issueTokens'
-// import Provider from './utils/Provider'
 
 global.fetch = fetch
 
 const argv = yargs(hideBin(process.argv))
   .option('input', {
     alias: 'i',
+    description: 'CSV file with the addresses to airdrop',
     type: 'string',
     demandOption: true
   })
   .option('batch', {
     alias: 'b',
+    description: 'The amount of items minted by transactions',
     type: 'number',
-    default: 10
+    default: 100
   })
   .option('contract', {
     alias: 'c',
+    description: 'The collection address on polygon',
     type: 'string',
     demandOption: true,
   })
-  .option('default-item', {
-    type: 'number'
-  })
   .option('output', {
     alias: 'o',
+    description: 'The file to dump the output (default: stdout)',
     type: 'string',
   })
   .argv as any
 
-// metatransactions
-// const provider = Provider.Empty(POLYGON_CHAIN_ID)
 const output = argv.output ? createWriteStream(resolve(process.cwd(), argv.output), 'utf8') : process.stdout
 createReadStream(resolve(process.cwd(), argv.input))
 
@@ -46,7 +44,7 @@ createReadStream(resolve(process.cwd(), argv.input))
   .pipe(new Transform({
     decodeStrings: true,
     objectMode: true,
-    transform(chuck: Buffer, encoding: string, callback) {
+    transform(chuck: Buffer, _encoding: string, callback) {
       if (!(this as any).addresses) {
         (this as any).addresses = []
       }
@@ -79,7 +77,7 @@ createReadStream(resolve(process.cwd(), argv.input))
   .pipe(new Transform({
     decodeStrings: true,
     objectMode: true,
-    transform(chuck: string[], encoding: string, callback) {
+    transform(chuck: string[], _encoding: string, callback) {
       Promise.resolve()
         .then(async () => {
           const beneficieries = chuck.map(line => line.split(',')[0])

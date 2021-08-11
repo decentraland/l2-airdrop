@@ -12,6 +12,8 @@ const chains = {
   [ChainId.ETHEREUM_KOVAN]: ChainId.MATIC_MUMBAI,
   [ChainId.ETHEREUM_RINKEBY]: ChainId.MATIC_MUMBAI,
   [ChainId.ETHEREUM_GOERLI]: ChainId.MATIC_MUMBAI,
+  [ChainId.MATIC_MAINNET]: ChainId.MATIC_MAINNET,
+  [ChainId.MATIC_MUMBAI]: ChainId.MATIC_MUMBAI,
 }
 
 export const CHAIN_ID = Number(requiredEnv('CHAIN_ID')) as keyof typeof chains
@@ -27,7 +29,6 @@ if (!chains[CHAIN_ID]) {
   throw new Error(`Invalid CHAIN_ID: "${CHAIN_ID}". Expected ${Object.keys(chains).join(' or ')}`)
 }
 
-export const ETHEREUM_CHAIN_ID = CHAIN_ID
 export const POLYGON_CHAIN_ID = chains[CHAIN_ID]
 const provider = Provider.Empty(POLYGON_CHAIN_ID)
 const txs = new Map<string, string>()
@@ -48,31 +49,7 @@ export default async function issueTokens(address: string, beneficiaries: string
   const tx = await account!.sendTransaction({ to: address, data: encoded })
   const txh = tx.hash
 
-  // metatransations
-  // const [ ethereum, polygon ] = getProviders(getAccount(), CHAIN_ID)
-  // const txh = await sendMetaTransaction(ethereum, polygon, encoded, data, getConfiguration(CHAIN_ID))
-
   txs.set(accountAddress!, txh)
   console.log(`new transaction: https://polygonscan.com/tx/${txh}`)
   return txh
 }
-
-// metatransations
-// function getConfiguration(chainId: ChainId): Partial<Configuration> {
-//   if (
-//     chainId === ChainId.MATIC_MAINNET ||
-//     chainId === ChainId.ETHEREUM_MAINNET
-//   ) {
-//     return { serverURL: 'https://transactions-api.decentraland.org/v1' }
-//   }
-//
-//   return {}
-// }
-
-// metatransations
-// function getProviders(wallet: Wallet, chainId: keyof typeof chains) {
-//   return [
-//     new Provider(wallet, chainId),
-//     new Provider(wallet, chains[chainId])
-//   ]
-// }
