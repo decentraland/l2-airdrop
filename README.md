@@ -84,11 +84,7 @@ Options:
 
 Go to [`https://builder.decentraland.org/collections`](https://builder.decentraland.org/collections) open the collection you want to airdrop and copy its address
 
-<div style="max-wdth: 500px">
-
-![get-address](./images/get-address.jpg)
-
-<div>
+<img src="./images/get-address.jpg" alt="get-address" style="width: 100%; max-width:500px" />
 
 ### Create your `addresses.csv` file
 
@@ -112,24 +108,12 @@ In the following example the address `0xfff...fff` is going to receive items `0`
 
 Got yo [polygonscan](https://polygonscan.com/) as search for your `COLLECTION_ADDRESS`
 
-<div style="max-wdth: 500px">
-
-![search-contract](./images/search-contract.jpg)
-
-</div>
+<img src="./images/search-contract.jpg" alt="search-contract" style="width: 100%; max-width:500px" />
 
 Open the `Contact` section and then the `Read contract` button
 
-<div style="max-wdth: 500px">
-
-![read-contract](./images/read-contract.jpg)
-
-</div>
+<img src="./images/read-contract.jpg" alt="read-contract" style="width: 100%; max-width:500px" />
 
 Using the method `26. items` you can check the info of each item id
 
-<div style="max-wdth: 500px">
-
-![items](./images/items.jpg)
-
-</div>
+<img src="./images/items.jpg" alt="items" style="width: 100%; max-width:500px" />
