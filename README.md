@@ -2,6 +2,18 @@
 
 This repository is a collection of command line tools to do massive Airdrops of Decentraland Wearables on Matic
 
+&nbsp;
+
+## Index
+
+- Installation
+- Setup
+- Airdrop
+
+&nbsp;
+
+&nbsp;
+
 ## Installation
 
 ```bash
@@ -11,6 +23,10 @@ This repository is a collection of command line tools to do massive Airdrops of 
   # Install dependencies
   cd l2-airdrop && npm install
 ```
+
+&nbsp;
+
+&nbsp;
 
 ## Setup
 
@@ -54,7 +70,13 @@ ACCOUNT_WALLETS:  [
 
 ### Send `MATIC` to your new address
 
+&nbsp;
+
 ![send-matic](./images/send-matic.jpg)
+
+&nbsp;
+
+&nbsp;
 
 > `1 MATIC` is more than enough
 
@@ -64,7 +86,11 @@ Go to [`https://builder.decentraland.org/collections`](https://builder.decentral
 
 ![add-minter](./images/add-minter.jpg)
 
-## How to airdrop
+&nbsp;
+
+&nbsp;
+
+## Airdrop
 
 ```bash
   npm run send -- --contract [COLLECTION_ADDRESS] -batch 100 -input address.csv -output transactions.output
