@@ -6,9 +6,9 @@ This repository is a collection of command line tools to do massive Airdrops of 
 
 ## Index
 
-- Installation
-- Setup
-- Airdrop
+- [Installation](#installation)
+- [Setup](#setup)
+- [Airdrop](#airdrop)
 
 &nbsp;
 
@@ -106,11 +106,15 @@ Options:
   -o, --output    The file to dump the output (default: stdout)               [string]
 ```
 
+&nbsp;
+
 ### Where do you get the `COLLECTION_ADDRESS`
 
 Go to [`https://builder.decentraland.org/collections`](https://builder.decentraland.org/collections) open the collection you want to airdrop and copy its address
 
-<img src="./images/get-address.jpg" alt="get-address" style="width: 100%; max-width:500px" />
+<img src="./images/get-address.jpg" alt="get-address" width=685 />
+
+&nbsp;
 
 ### Create your `addresses.csv` file
 
@@ -130,16 +134,22 @@ In the following example the address `0xfff...fff` is going to receive items `0`
 0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee,1
 ```
 
+&nbsp;
+
 ### How to get the `ITEM_ID`
 
 Got yo [polygonscan](https://polygonscan.com/) as search for your `COLLECTION_ADDRESS`
 
-<img src="./images/search-contract.jpg" alt="search-contract" style="width: 100%; max-width:500px" />
+<img src="./images/search-contract.jpg" alt="search-contract" width="875" />
+
+&nbsp;
 
 Open the `Contact` section and then the `Read contract` button
 
-<img src="./images/read-contract.jpg" alt="read-contract" style="width: 100%; max-width:500px" />
+<img src="./images/read-contract.jpg" alt="read-contract" width="991" />
+
+&nbsp;
 
 Using the method `26. items` you can check the info of each item id
 
-<img src="./images/items.jpg" alt="items" style="width: 100%; max-width:500px" />
+<img src="./images/items.jpg" alt="items" width="882" />
