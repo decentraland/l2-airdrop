@@ -12,8 +12,6 @@ This repository is a collection of command line tools to do massive Airdrops of 
 
 &nbsp;
 
-&nbsp;
-
 ## Installation
 
 ```bash
@@ -23,8 +21,6 @@ This repository is a collection of command line tools to do massive Airdrops of 
   # Install dependencies
   cd l2-airdrop && npm install
 ```
-
-&nbsp;
 
 &nbsp;
 
@@ -68,25 +64,22 @@ ACCOUNT_WALLETS:  [
 ]
 ```
 
+&nbsp;
+
 ### Send `MATIC` to your new address
 
-&nbsp;
+You need to have MATIC in your new address to pay for fees on Polygon (which are really cheap with `1 MATIC` you can mint thousands of wearables)
 
 ![send-matic](./images/send-matic.jpg)
 
 &nbsp;
 
-&nbsp;
-
-> `1 MATIC` is more than enough
 
 ### Add your new address as minter on your builder collection
 
 Go to [`https://builder.decentraland.org/collections`](https://builder.decentraland.org/collections), open the collection you want yo airdrop and add your new address as a minter
 
 ![add-minter](./images/add-minter.jpg)
-
-&nbsp;
 
 &nbsp;
 
@@ -112,7 +105,7 @@ Options:
 
 Go to [`https://builder.decentraland.org/collections`](https://builder.decentraland.org/collections) open the collection you want to airdrop and copy its address
 
-<img src="./images/get-address.jpg" alt="get-address" width=685 />
+<img src="./images/get-address.jpg" alt="get-address" width="500' />
 
 &nbsp;
 
@@ -140,16 +133,16 @@ In the following example the address `0xfff...fff` is going to receive items `0`
 
 Got yo [polygonscan](https://polygonscan.com/) as search for your `COLLECTION_ADDRESS`
 
-<img src="./images/search-contract.jpg" alt="search-contract" width="875" />
+<img src="./images/search-contract.jpg" alt="search-contract" width="500' />
 
 &nbsp;
 
 Open the `Contact` section and then the `Read contract` button
 
-<img src="./images/read-contract.jpg" alt="read-contract" width="991" />
+<img src="./images/read-contract.jpg" alt="read-contract" width="500' />
 
 &nbsp;
 
 Using the method `26. items` you can check the info of each item id
 
-<img src="./images/items.jpg" alt="items" width="882" />
+<img src="./images/items.jpg" alt="items" width="500' />
