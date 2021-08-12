@@ -105,7 +105,7 @@ Options:
 
 Go to [`https://builder.decentraland.org/collections`](https://builder.decentraland.org/collections) open the collection you want to airdrop and copy its address
 
-<img src="./images/get-address.jpg" alt="get-address" width="500' />
+<img src="./images/get-address.jpg" alt="get-address" width="500" />
 
 &nbsp;
 
@@ -133,16 +133,16 @@ In the following example the address `0xfff...fff` is going to receive items `0`
 
 Got yo [polygonscan](https://polygonscan.com/) as search for your `COLLECTION_ADDRESS`
 
-<img src="./images/search-contract.jpg" alt="search-contract" width="500' />
+<img src="./images/search-contract.jpg" alt="search-contract" width="500" />
 
 &nbsp;
 
 Open the `Contact` section and then the `Read contract` button
 
-<img src="./images/read-contract.jpg" alt="read-contract" width="500' />
+<img src="./images/read-contract.jpg" alt="read-contract" width="500" />
 
 &nbsp;
 
 Using the method `26. items` you can check the info of each item id
 
-<img src="./images/items.jpg" alt="items" width="500' />
+<img src="./images/items.jpg" alt="items" width="500" />
