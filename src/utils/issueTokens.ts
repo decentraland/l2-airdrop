@@ -43,7 +43,7 @@ export default async function issueTokens(address: string, beneficiaries: string
   if (txs.has(accountAddress)) {
     const hash = txs.get(accountAddress)!
     console.log(`wating for transaction https://polygonscan.com/tx/${hash}`)
-    await provider.waitForTransaction(txs.get(accountAddress)!)
+    await provider.waitForTransaction(txs.get(accountAddress)!, 5)
   }
 
   const tx = await account!.sendTransaction({ to: address, data: encoded })
