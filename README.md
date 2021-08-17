@@ -86,7 +86,7 @@ Go to [`https://builder.decentraland.org/collections`](https://builder.decentral
 ## Airdrop
 
 ```bash
-  npm run send -- --contract [COLLECTION_ADDRESS] -batch 100 -input address.csv -output transactions.output
+  npm run send -- --contract [COLLECTION_ADDRESS] --batch 100 --input address.csv --output transactions.output
 ```
 
 ```bash
