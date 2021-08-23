@@ -114,9 +114,9 @@ Go to [`https://builder.decentraland.org/collections`](https://builder.decentral
 In order to mint a big amount of wearables you will need a `.csv` file with an address and item id per line
 
 ```csv
-ADDRESS,ITEM_ID
-ADDRESS,ITEM_ID
-ADDRESS,ITEM_ID
+ADDRESS,BLOCKCHAIN_ID
+ADDRESS,BLOCKCHAIN_ID
+ADDRESS,BLOCKCHAIN_ID
 ```
 
 In the following example the address `0xfff...fff` is going to receive items `0` and `1` and the address `0xeee...eee` is going to receive only the item `1`
@@ -129,20 +129,8 @@ In the following example the address `0xfff...fff` is going to receive items `0`
 
 &nbsp;
 
-### How to get the `ITEM_ID`
+### How to get the `BLOCKCHAIN_ID`
 
-Got yo [polygonscan](https://polygonscan.com/) as search for your `COLLECTION_ADDRESS`
+Go to [`https://builder.decentraland.org/collections`](https://builder.decentraland.org/collections) open the collection and then open the item details
 
-<img src="./images/search-contract.jpg" alt="search-contract" width="500" />
-
-&nbsp;
-
-Open the `Contact` section and then the `Read contract` button
-
-<img src="./images/read-contract.jpg" alt="read-contract" width="500" />
-
-&nbsp;
-
-Using the method `26. items` you can check the info of each item id
-
-<img src="./images/items.jpg" alt="items" width="500" />
+<img src="./images/get-blockchain-id.jpg" alt="get-blockchain-id"  />
