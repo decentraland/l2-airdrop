@@ -7,6 +7,7 @@
     "market": "ts-node -r dotenv/config ./src/market.ts",
     "mana": "ts-node -r dotenv/config ./src/mana.ts",
     "environment": "ts-node -r dotenv/config ./src/environment.ts",
+    "tx": "ts-node -r dotenv/config ./src/transaction.ts",
     "send": "ts-node -r dotenv/config ./src/send.ts",
     "opensea": "ts-node -r dotenv/config ./src/opensea.ts"
   },
@@ -22,9 +23,10 @@
   "homepage": "https://github.com/decentraland/l2-airdrop#readme",
   "dependencies": {
     "@dcl/schemas": "^1.2.0",
-    "@ethersproject/contracts": "^5.3.0",
-    "@ethersproject/providers": "^5.3.0",
-    "@ethersproject/wallet": "^5.3.0",
+    "@ethersproject/contracts": "^5.4.1",
+    "@ethersproject/providers": "^5.4.5",
+    "@ethersproject/units": "^5.4.0",
+    "@ethersproject/wallet": "^5.4.0",
     "@types/isomorphic-fetch": "0.0.35",
     "@types/split": "^1.0.0",
     "@types/yargs": "^17.0.0",

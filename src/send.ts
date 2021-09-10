@@ -21,7 +21,7 @@ const argv = yargs(hideBin(process.argv))
     alias: 'b',
     description: 'The amount of items minted by transactions',
     type: 'number',
-    default: 100
+    default: 50
   })
   .option('contract', {
     alias: 'c',
@@ -33,6 +33,20 @@ const argv = yargs(hideBin(process.argv))
     alias: 'o',
     description: 'The file to dump the output (default: stdout)',
     type: 'string',
+  })
+  .option('speed', {
+    alias: 's',
+    description: 'The gas price use to send the transaction',
+    choices: ['safeLow' , 'standard' , 'fast' , 'fastest'],
+    type: 'string'
+  })
+  .option('min-gas', {
+    description: 'Define a max value for gas price to send the transaction',
+    type: 'number'
+  })
+  .option('max-gas', {
+    description: 'Define a min value for gas price to send the transaction',
+    type: 'number'
   })
   .argv as any
 
@@ -82,7 +96,12 @@ createReadStream(resolve(process.cwd(), argv.input))
         .then(async () => {
           const beneficieries = chuck.map(line => line.split(',')[0])
           const tokens = chuck.map(line => line.split(',')[1])
-          const hash = await issueTokens(argv.contract, beneficieries, tokens)
+          const options = {
+            speed: argv.speed || null,
+            minGasPrice: argv['min-gas'] || null,
+            maxGasPrice: argv['max-gas'] || null,
+          }
+          const hash = await issueTokens(argv.contract, beneficieries, tokens, options)
           this.push(`https://polygonscan.com/tx/${hash}\n${chuck.map(c => '  ' + c + '\n').join('')}\n`)
         })
         .then(() => callback())

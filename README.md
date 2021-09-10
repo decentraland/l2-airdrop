@@ -86,7 +86,7 @@ Go to [`https://builder.decentraland.org/collections`](https://builder.decentral
 ## Airdrop
 
 ```bash
-  npm run send -- --contract [COLLECTION_ADDRESS] --batch 100 --input address.csv --output transactions.output
+  npm run send -- --contract [COLLECTION_ADDRESS] --input address.csv --output transactions.output
 ```
 
 ```bash
@@ -94,9 +94,13 @@ Options:
       --help      Show help                                                  [boolean]
       --version   Show version number                                        [boolean]
   -i, --input     CSV file with the addresses to airdrop           [string] [required]
-  -b, --batch     The amount of items minted by transactions   [number] [default: 100]
+  -b, --batch     The amount of items minted by transactions    [number] [default: 50]
   -c, --contract  The collection address on polygon                [string] [required]
   -o, --output    The file to dump the output (default: stdout)               [string]
+  -s, --speed     The gas price use to send the transaction
+                          [string] [choices: "safeLow", "standard", "fast", "fastest"]
+      --min-gas   Define a max value for gas price to send the transaction    [number]
+      --max-gas   Define a min value for gas price to send the transaction    [number]
 ```
 
 &nbsp;
