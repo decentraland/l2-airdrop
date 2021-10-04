@@ -86,7 +86,12 @@ Go to [`https://builder.decentraland.org/collections`](https://builder.decentral
 ## Airdrop
 
 ```bash
-  npm run send -- --contract [COLLECTION_ADDRESS] --input address.csv --output transactions.output
+  npm run send -- \
+    --contract [COLLECTION_ADDRESS] \
+    --input address.csv \
+    --output transactions.output \
+    --speed fast \
+    --max-gas 20
 ```
 
 ```bash
