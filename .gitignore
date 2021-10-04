@@ -105,3 +105,5 @@ dist
 *.txt
 *.csv
 *.output
+
+.DS_Store
