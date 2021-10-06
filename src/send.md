@@ -47,7 +47,7 @@ waiting for transaction https://polygonscan.com/tx/0xffff...0000
 
 Go to [`https://builder.decentraland.org/collections`](https://builder.decentraland.org/collections) open the collection you want to airdrop and copy its address
 
-<img src="./images/get-address.jpg" alt="get-address" width="500" />
+<img src="../images/get-address.jpg" alt="get-address" width="500" />
 
 &nbsp;
 
@@ -75,4 +75,4 @@ In the following example the address `0xfff...fff` is going to receive items `0`
 
 Go to [`https://builder.decentraland.org/collections`](https://builder.decentraland.org/collections) open the collection and then open the item details
 
-<img src="./images/get-blockchain-id.jpg" alt="get-blockchain-id"  />
+<img src="../images/get-blockchain-id.jpg" alt="get-blockchain-id"  />
