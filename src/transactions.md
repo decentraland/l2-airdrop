@@ -2,7 +2,11 @@
 
 ## `tx` command line
 
-> Help output (`npm run tx -- --help`)
+> Help output
+
+```bash
+npm run tx -- --help
+```
 
 ```bash
 Options:
@@ -17,6 +21,8 @@ Options:
       --max-gas  Define a min value for gas price to send the transaction
                                                                         [number]
 ```
+
+&nbsp;
 
 > Print transaction data
 
@@ -51,7 +57,9 @@ https://polygonscan.com/tx/0x200000000000000000000000000000000000000000000000000
 }
 ```
 
-> Cancel transactions with a max gas price of 20
+&nbsp;
+
+> Speed up transactions with a max gas price of 20
 
 ```bash
 npm run tx -- \
@@ -65,6 +73,8 @@ npm run tx -- \
 https://polygonscan.com/tx/0xffff...ffff
 https://polygonscan.com/tx/0xeeee...eeee
 ```
+
+&nbsp;
 
 > Cancel transactions with a max gas price of 20
 

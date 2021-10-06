@@ -4,7 +4,11 @@
 
 ## `send` command line
 
-> Help output (`npm run send -- --help`)
+> Help output
+
+```bash
+npm run send -- --help
+```
 
 ```bash
 Options:
@@ -19,6 +23,8 @@ Options:
       --min-gas   Define a max value for gas price to send the transaction    [number]
       --max-gas   Define a min value for gas price to send the transaction    [number]
 ```
+
+&nbsp;
 
 > Send wearables with a gas limit of 20 per transaction
 

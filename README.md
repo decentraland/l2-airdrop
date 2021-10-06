@@ -99,17 +99,23 @@ In this case you can:
 
 Once you don't have any pending transaction you can re-start the airdrop :+1:
 
+&nbsp;
+
 ## Airdrops
 
 > Send wearables to a list of addresses
 
 [See documentation](./src/send.md)
 
+&nbsp;
+
 ## Transactions
 
 > Inspect, cancel or speed up a transaction
 
 [See documentation](./src/transactions.md)
+
+&nbsp;
 
 ## Opensea
 

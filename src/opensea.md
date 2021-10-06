@@ -2,7 +2,11 @@
 
 ## `opensea` command line
 
-> Help output (`npm run opensea -- --help`)
+> Help output
+
+```bash
+npm run opensea -- --help
+```
 
 ```bash
 Options:
@@ -11,6 +15,8 @@ Options:
   -c, --collection                                           [string] [required]
   -o, --output                                                          [string]
 ```
+
+&nbsp;
 
 > Download all address that own an item in a open sea collection
 
