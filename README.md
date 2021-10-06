@@ -8,7 +8,10 @@ This repository is a collection of command line tools to do massive Airdrops of 
 
 - [Installation](#installation)
 - [Setup](#setup)
-- [Airdrop](#airdrop)
+- :warning: [Warnings](#warnings)
+- [Airdrops](#airdrops): send wearables to a list of addresses
+- [Transactions](#transactions): inspect, cancel or speed up a transaction
+- [Opensea](#opensea): download all the address from an opensea collection
 
 &nbsp;
 
@@ -74,7 +77,6 @@ You need to have MATIC in your new address to pay for fees on Polygon (which are
 
 &nbsp;
 
-
 ### Add your new address as minter on your builder collection
 
 Go to [`https://builder.decentraland.org/collections`](https://builder.decentraland.org/collections), open the collection you want yo airdrop and add your new address as a minter
@@ -83,63 +85,34 @@ Go to [`https://builder.decentraland.org/collections`](https://builder.decentral
 
 &nbsp;
 
-## Airdrop
+## Warnings
 
-```bash
-  npm run send -- \
-    --contract [COLLECTION_ADDRESS] \
-    --input address.csv \
-    --output transactions.output \
-    --speed fast \
-    --max-gas 20
-```
+### :warning: Cancelling the command line execution doesn't cancel those transactions sent with it
 
-```bash
-Options:
-      --help      Show help                                                  [boolean]
-      --version   Show version number                                        [boolean]
-  -i, --input     CSV file with the addresses to airdrop           [string] [required]
-  -b, --batch     The amount of items minted by transactions    [number] [default: 50]
-  -c, --contract  The collection address on polygon                [string] [required]
-  -o, --output    The file to dump the output (default: stdout)               [string]
-  -s, --speed     The gas price use to send the transaction
-                          [string] [choices: "safeLow", "standard", "fast", "fastest"]
-      --min-gas   Define a max value for gas price to send the transaction    [number]
-      --max-gas   Define a min value for gas price to send the transaction    [number]
-```
+If for any reason you cancel the execution of the command line please take into account the any transaction sent is still running, if you restart the airdrop it will fail until all pending transactions complete.
 
-&nbsp;
+In this case you can:
 
-### Where do you get the `COLLECTION_ADDRESS`
+- wait until all pending transactions complete
+- cancel or speed up pending transactions using the [**Transactions tool**](#transactions)
+- remove all address that already receive the airdrop from your `addresses.csv`
 
-Go to [`https://builder.decentraland.org/collections`](https://builder.decentraland.org/collections) open the collection you want to airdrop and copy its address
+Once you don't have any pending transaction you can re-start the airdrop :+1:
 
-<img src="./images/get-address.jpg" alt="get-address" width="500" />
+## Airdrops
 
-&nbsp;
+> Send wearables to a list of addresses
 
-### Create your `addresses.csv` file
+[See documentation](./src/send.md)
 
-In order to mint a big amount of wearables you will need a `.csv` file with an address and item id per line
+## Transactions
 
-```csv
-ADDRESS,BLOCKCHAIN_ID
-ADDRESS,BLOCKCHAIN_ID
-ADDRESS,BLOCKCHAIN_ID
-```
+> Inspect, cancel or speed up a transaction
 
-In the following example the address `0xfff...fff` is going to receive items `0` and `1` and the address `0xeee...eee` is going to receive only the item `1`
+[See documentation](./src/transactions.md)
 
-```csv
-0xffffffffffffffffffffffffffffffffffffffff,0
-0xffffffffffffffffffffffffffffffffffffffff,1
-0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee,1
-```
+## Opensea
 
-&nbsp;
+> Download all the address from an opensea collection
 
-### How to get the `BLOCKCHAIN_ID`
-
-Go to [`https://builder.decentraland.org/collections`](https://builder.decentraland.org/collections) open the collection and then open the item details
-
-<img src="./images/get-blockchain-id.jpg" alt="get-blockchain-id"  />
+[See documentation](./src/transactions.md)
