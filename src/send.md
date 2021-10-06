@@ -1,10 +1,10 @@
 # Airdrops
 
-> Send wearables to a list of addresses
+Send wearables to a list of addresses
 
 ## `send` command line
 
-> Help output
+Help output
 
 ```bash
 npm run send -- --help
@@ -26,7 +26,7 @@ Options:
 
 &nbsp;
 
-> Send wearables with a gas limit of 20 per transaction
+Send wearables with a gas limit of 20 per transaction
 
 ```bash
 npm run send -- \

@@ -1,8 +1,10 @@
 # Opensea
 
+Download all the address from an opensea collection
+
 ## `opensea` command line
 
-> Help output
+Help output
 
 ```bash
 npm run opensea -- --help
@@ -18,7 +20,7 @@ Options:
 
 &nbsp;
 
-> Download all address that own an item in a open sea collection
+Download all address that own an item in a open sea collection
 
 ```bash
 npm run opensea -- -c cryptokitties -o cryptokitties.owners.csv

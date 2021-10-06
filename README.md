@@ -10,7 +10,7 @@ This repository is a collection of command line tools to do massive Airdrops of 
 - [Setup](#setup)
 - :warning: [Warnings](#warnings)
 - [Airdrops](#airdrops): send wearables to a list of addresses
-- [Transactions](#transactions): inspect, cancel or speed up a transaction
+- [Transactions](#transactions): inspect, cancel or speed up transactions
 - [Opensea](#opensea): download all the address from an opensea collection
 
 &nbsp;
@@ -103,7 +103,7 @@ Once you don't have any pending transaction you can re-start the airdrop :+1:
 
 ## Airdrops
 
-> Send wearables to a list of addresses
+Send wearables to a list of addresses
 
 [See documentation](./src/send.md)
 
@@ -111,7 +111,7 @@ Once you don't have any pending transaction you can re-start the airdrop :+1:
 
 ## Transactions
 
-> Inspect, cancel or speed up a transaction
+Inspect, cancel or speed up transactions
 
 [See documentation](./src/transactions.md)
 
@@ -119,6 +119,6 @@ Once you don't have any pending transaction you can re-start the airdrop :+1:
 
 ## Opensea
 
-> Download all the address from an opensea collection
+Download all the address from an opensea collection
 
 [See documentation](./src/transactions.md)

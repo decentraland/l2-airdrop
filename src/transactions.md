@@ -1,8 +1,10 @@
 # Transactions
 
+Inspect, cancel or speed up transactions
+
 ## `tx` command line
 
-> Help output
+Help output
 
 ```bash
 npm run tx -- --help
@@ -59,7 +61,7 @@ https://polygonscan.com/tx/0x200000000000000000000000000000000000000000000000000
 
 &nbsp;
 
-> Speed up transactions with a max gas price of 20
+Speed up transactions with a max gas price of 20
 
 ```bash
 npm run tx -- \
@@ -76,7 +78,7 @@ https://polygonscan.com/tx/0xeeee...eeee
 
 &nbsp;
 
-> Cancel transactions with a max gas price of 20
+Cancel transactions with a max gas price of 20
 
 ```bash
 npm run tx -- \
