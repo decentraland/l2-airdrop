@@ -26,6 +26,10 @@ Options:
 
 &nbsp;
 
+---------
+
+&nbsp;
+
 Send wearables with a gas limit of 20 per transaction
 
 ```bash

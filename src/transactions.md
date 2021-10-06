@@ -26,7 +26,11 @@ Options:
 
 &nbsp;
 
-> Print transaction data
+---------
+
+&nbsp;
+
+Print transaction data
 
 ```bash
 npm run tx -- \
@@ -61,6 +65,10 @@ https://polygonscan.com/tx/0x200000000000000000000000000000000000000000000000000
 
 &nbsp;
 
+---------
+
+&nbsp;
+
 Speed up transactions with a max gas price of 20
 
 ```bash
@@ -75,6 +83,10 @@ npm run tx -- \
 https://polygonscan.com/tx/0xffff...ffff
 https://polygonscan.com/tx/0xeeee...eeee
 ```
+
+&nbsp;
+
+---------
 
 &nbsp;
 

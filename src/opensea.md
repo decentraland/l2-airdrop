@@ -20,6 +20,10 @@ Options:
 
 &nbsp;
 
+---------
+
+&nbsp;
+
 Download all address that own an item in a open sea collection
 
 ```bash
