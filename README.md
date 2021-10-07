@@ -6,12 +6,23 @@ This repository is a collection of command line tools to do massive Airdrops of 
 
 ## Index
 
+- [Requirements](#requirements)
 - [Installation](#installation)
 - [Setup](#setup)
 - :warning: [Warnings](#warnings)
 - [Airdrops](#airdrops): send wearables to a list of addresses
 - [Transactions](#transactions): inspect, cancel or speed up transactions
 - [Opensea](#opensea): download all the address from an opensea collection
+
+&nbsp;
+
+## Requirements
+
+Before to start make sure you have [NodeJS](https://nodejs.org/) `>=12`
+
+```bash
+  node -v
+```
 
 &nbsp;
 
