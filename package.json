@@ -7,9 +7,10 @@
     "market": "ts-node -r dotenv/config ./src/market.ts",
     "mana": "ts-node -r dotenv/config ./src/mana.ts",
     "environment": "ts-node -r dotenv/config ./src/environment.ts",
-    "tx": "ts-node -r dotenv/config ./src/transaction.ts",
+    "tx": "ts-node -r dotenv/config ./src/transactions.ts",
     "send": "ts-node -r dotenv/config ./src/send.ts",
-    "opensea": "ts-node -r dotenv/config ./src/opensea.ts"
+    "opensea": "ts-node -r dotenv/config ./src/opensea.ts",
+    "rarible": "ts-node -r dotenv/config ./src/rarible.ts"
   },
   "repository": {
     "type": "git",
