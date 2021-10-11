@@ -17,6 +17,7 @@ export type GasPriceOptions = {
   minGasPrice?: number | null,
 }
 
+export const MIN_MATIC_GAS_PRICE = parseUnits(String(30), 'gwei')
 
 export async function getGasPrice(options: GasPriceOptions) {
   let gasPrice: BigNumberish;
@@ -40,6 +41,10 @@ export async function getGasPrice(options: GasPriceOptions) {
     if (gasPrice.gt(maxGasPrice)) {
       gasPrice = maxGasPrice;
     }
+  }
+
+  if (gasPrice.lt(MIN_MATIC_GAS_PRICE)) {
+    throw new Error(`Gas price is lower than the network minimun: 30gewi.\nRead more here: https://forum.matic.network/t/recommended-min-gas-price-setting/2531`)
   }
 
   return gasPrice;
