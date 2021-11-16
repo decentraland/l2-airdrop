@@ -8,6 +8,11 @@ import { hideBin } from 'yargs/helpers'
 // const eventIds = process.argv.slice(2).map(Number).filter(n => Number.isFinite(n))
 
 const argv = yargs(hideBin(process.argv))
+  .option('event', {
+    type: 'array',
+    description: 'POAP event id',
+    demandOption: true
+  })
   .option('output', {
     alias: 'o',
     type: 'string',
@@ -57,9 +62,10 @@ Promise.resolve()
     const addresses = new Set<string>()
     const output = argv.output ? createWriteStream(resolve(process.cwd(), argv.output), 'utf8') : process.stdout
     const events = new Set(
-      Array.from(argv._, Number)
+      Array.from(argv.event, Number)
         .filter((n: number) => Number.isFinite(n))
     )
+
 
     if (events.size) {
       for (const event of events) {

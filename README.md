@@ -13,6 +13,7 @@ This repository is a collection of command line tools to do massive Airdrops of 
 - [Airdrops](#airdrops): send wearables to a list of addresses
 - [Transactions](#transactions): inspect, cancel or speed up transactions
 - [Opensea](#opensea): download all the address from an opensea collection
+- [POAP](#poap): download all the address from a list of events ids
 - [Rarible](#rarible): download all the address from a rarible item
 
 &nbsp;
@@ -134,6 +135,12 @@ Inspect, cancel or speed up transactions
 Download all the address from an opensea collection
 
 [See documentation](./src/transactions.md)
+
+## POAP
+
+Download all the address from a list of events ids
+
+[See documentation](./src/poap.md)
 
 ## Rarible
 
