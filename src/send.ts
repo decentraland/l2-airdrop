@@ -48,6 +48,10 @@ const argv = yargs(hideBin(process.argv))
     description: 'Define a min value for gas price to send the transaction',
     type: 'number'
   })
+  .option('meta-transactions', {
+    alias: 'Use metatransactions to send requests',
+    type: 'boolean'
+  })
   .argv as any
 
 const output = argv.output ? createWriteStream(resolve(process.cwd(), argv.output), 'utf8') : process.stdout
@@ -100,6 +104,7 @@ createReadStream(resolve(process.cwd(), argv.input))
             speed: argv.speed || null,
             minGasPrice: argv['min-gas'] || null,
             maxGasPrice: argv['max-gas'] || null,
+            useMetaTransactions: !!argv['meta-transactions'],
           }
           const hash = await issueTokens(argv.contract, beneficieries, tokens, options)
           this.push(`https://polygonscan.com/tx/${hash}\n${chuck.map(c => '  ' + c + '\n').join('')}\n`)
