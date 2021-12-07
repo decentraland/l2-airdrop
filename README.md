@@ -82,14 +82,6 @@ ACCOUNT_WALLETS:  [
 
 &nbsp;
 
-### Send `MATIC` to your new address
-
-You need to have MATIC in your new address to pay for fees on Polygon (which are really cheap with `1 MATIC` you can mint thousands of wearables)
-
-![send-matic](./images/send-matic.jpg)
-
-&nbsp;
-
 ### Add your new address as minter on your builder collection
 
 Go to [`https://builder.decentraland.org/collections`](https://builder.decentraland.org/collections), open the collection you want yo airdrop and add your new address as a minter
@@ -103,14 +95,6 @@ Go to [`https://builder.decentraland.org/collections`](https://builder.decentral
 ### :warning: Cancelling the command line execution doesn't cancel those transactions sent with it
 
 If for any reason you cancel the execution of the command line please take into account the any transaction sent is still running, if you restart the airdrop it will fail until all pending transactions complete.
-
-In this case you can:
-
-- wait until all pending transactions complete
-- cancel or speed up pending transactions using the [**Transactions tool**](#transactions)
-- remove all address that already receive the airdrop from your `addresses.csv`
-
-Once you don't have any pending transaction you can re-start the airdrop :+1:
 
 &nbsp;
 
