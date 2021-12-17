@@ -34,7 +34,7 @@ const argv = yargs(hideBin(process.argv))
     description: 'The file to dump the output (default: stdout)',
     type: 'string',
   })
-  .option('transactions', {
+  .option('meta-transactions', {
     alias: 'Send transactions directly to the blockchain',
     type: 'boolean'
   })
@@ -104,7 +104,7 @@ createReadStream(resolve(process.cwd(), argv.input))
             speed: argv.speed || null,
             minGasPrice: argv['min-gas'] || null,
             maxGasPrice: argv['max-gas'] || null,
-            useTransactions: !!argv['transactions'],
+            useMetaTransactions: !!argv['meta-transactions'],
           }
           const hash = await issueTokens(argv.contract, beneficieries, tokens, options)
           this.push(`https://polygonscan.com/tx/${hash}\n${chuck.map(c => '  ' + c + '\n').join('')}\n`)

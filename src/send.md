@@ -31,10 +31,36 @@ Options:
 
 &nbsp;
 
-Send wearables with a gas limit of 20 per transaction
+### Send wearables
+
+Send wearables with a gas limit of 50 per transaction
 
 ```bash
-npm run send -- --contract [COLLECTION_ADDRESS] --input address.csv --output transactions.output
+npm run send -- --contract [COLLECTION_ADDRESS] --input address.csv --output transactions.output --speed fast --max-gas 50
+```
+
+```bash
+https://polygonscan.com/tx/0x1000...0000
+waiting for transaction https://polygonscan.com/tx/0x1000...0000
+https://polygonscan.com/tx/0x2000...0000
+waiting for transaction https://polygonscan.com/tx/0x2000...0000
+# ...
+https://polygonscan.com/tx/0xffff...0000
+waiting for transaction https://polygonscan.com/tx/0xffff...0000
+```
+
+&nbsp;
+
+---------
+
+&nbsp;
+
+### Send wearables using meta-transactions
+
+Send wearables with meta transactions
+
+```bash
+npm run send -- --contract [COLLECTION_ADDRESS] --input address.csv --output transactions.output --meta-transactions
 ```
 
 ```bash

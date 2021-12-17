@@ -11,7 +11,7 @@ export const provider = Provider.Empty(POLYGON_CHAIN_ID)
 const txs = new Map<string, string>()
 
 export type IssueTokenOptions = GasPriceOptions & {
-  useTransactions?: boolean
+  useMetaTransactions?: boolean
 }
 
 export default async function issueTokens(address: string, beneficiaries: string[], tokens: (string | number)[], options: Partial<IssueTokenOptions> = {}) {
@@ -28,14 +28,14 @@ export default async function issueTokens(address: string, beneficiaries: string
   }
 
   let hash: string
-  if (options.useTransactions) {
+  if (options.useMetaTransactions) {
+    const [ ethereum, polygon ] = getProviders(getAccount(), CHAIN_ID)
+    hash = await sendMetaTransaction(ethereum, polygon, encoded, data, getConfiguration(CHAIN_ID))
+  } else {
     const gasPrice = await getGasPrice(options)
     const gasLimit = await account.estimateGas({ to: address, data: encoded, gasPrice })
     const tx = await account.sendTransaction({ to: address, data: encoded, gasLimit, gasPrice })
     hash = tx.hash
-  } else {
-    const [ ethereum, polygon ] = getProviders(getAccount(), CHAIN_ID)
-    hash = await sendMetaTransaction(ethereum, polygon, encoded, data, getConfiguration(CHAIN_ID))
   }
 
   txs.set(accountAddress!, hash)

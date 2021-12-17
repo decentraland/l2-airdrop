@@ -82,6 +82,14 @@ ACCOUNT_WALLETS:  [
 
 &nbsp;
 
+### Send `MATIC` to your new address
+
+You need to have MATIC in your new address to pay for fees on Polygon (which are really cheap with `1 MATIC` you can mint thousands of wearables)
+
+![send-matic](./images/send-matic.jpg)
+
+&nbsp;
+
 ### Add your new address as minter on your builder collection
 
 Go to [`https://builder.decentraland.org/collections`](https://builder.decentraland.org/collections), open the collection you want yo airdrop and add your new address as a minter
