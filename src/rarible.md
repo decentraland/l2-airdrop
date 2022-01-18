@@ -27,7 +27,7 @@ Options:
 Download all address that own a "Metakey: Edition 4 - The Captain" item
 
 ```bash
-npm run rarible -- -i 0x10daa9f4c0f985430fde4959adb2c791ef2ccf83:10004 -o metakey.owners.csv
+npm run rarible -- -i ETHEREUM:0x10daa9f4c0f985430fde4959adb2c791ef2ccf83:10004 -o metakey.owners.csv
 ```
 
 ```bash

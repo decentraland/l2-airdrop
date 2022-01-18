@@ -23,15 +23,41 @@ const output: typeof process.stdout = argv.output ? createWriteStream(resolve(pr
 
 Promise.resolve()
   .then(async () => {
+    let total = 0
+    const size = 500
     for (const raribleId of argv.item) {
-      const response = await fetch(`https://api-mainnet.rarible.com/marketplace/api/v4/items/${raribleId}/ownerships`)
-      const items = await response.json()
-      for (const item  of items) {
-        const owners = Array.from(
-          Array(item.value),
-          () => item.owner.toLowerCase()
-        )
-        output.write(owners.join('\n') + '\n')
+
+      let hasNext = true
+      let continuation: string | null = null
+      const params = new URLSearchParams({
+        itemId: raribleId,
+        size: String(size),
+      })
+
+      while (hasNext) {
+        if (continuation) {
+          params.set('continuation', continuation)
+        }
+
+        const response = await fetch(`https://api.rarible.org/v0.1/ownerships/byItem?` + params.toString())
+        const items = await response.json()
+
+        for (const item  of items.ownerships) {
+          const owners = Array.from(
+            Array(Number(item.value)),
+            () => item.owner.split(':')[1].toLowerCase()
+          )
+
+
+          total += owners.length
+          output.write(owners.join('\n') + '\n')
+        }
+
+        console.log(`${total} owners`)
+        hasNext = items.total === size
+        continuation = items.continuation
       }
     }
+
+    console.log(`Done!`)
   })
