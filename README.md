@@ -15,6 +15,7 @@ This repository is a collection of command line tools to do massive Airdrops of 
 - [Opensea](#opensea): download all the address from an opensea collection
 - [POAP](#poap): download all the address from a list of events ids
 - [Rarible](#rarible): download all the address from a rarible item
+- [Tutorial](#tutorial): watch a beginner's video tutorial by DOCTORdripp on how to use this script
 
 &nbsp;
 
@@ -126,7 +127,7 @@ Inspect, cancel or speed up transactions
 
 Download all the address from an opensea collection
 
-[See documentation](./src/transactions.md)
+[See documentation](./src/opensea.md)
 
 ## POAP
 
@@ -139,3 +140,13 @@ Download all the address from a list of events ids
 Download all the address from a rarible item
 
 [See documentation](./src/rarible.md)
+
+&nbsp; 
+
+## Tutorial ##
+
+A video demonstration and beginner's tutorial by DOCTORdripp. Learn how to bulk airdrop using this script now.
+
+[![Demo Video](https://img.youtube.com/vi/HgjdODKjpB4/0.jpg)](http://www.youtube.com/watch?v=HgjdODKjpB4 "How to Bulk Air Drop Decentraland Wearables with L2 Airdrop Script - Complete Beginners Walkthrough")
+
+http://www.youtube.com/watch?v=HgjdODKjpB4
