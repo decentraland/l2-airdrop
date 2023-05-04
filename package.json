@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/decentraland/l2-airdrop#readme",
   "dependencies": {
-    "@dcl/schemas": "^1.2.0",
+    "@dcl/schemas": "^6.18.0",
     "@ethersproject/contracts": "^5.4.1",
     "@ethersproject/providers": "^5.4.5",
     "@ethersproject/units": "^5.4.0",
