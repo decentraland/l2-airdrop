@@ -2,9 +2,9 @@ import { Contract } from '@ethersproject/contracts'
 import { getContract, ContractName } from 'decentraland-transactions'
 import Provider from './Provider'
 import { GasPriceOptions, getGasPrice } from './getGasPrice'
-import { chains, CHAIN_ID, getAccount, POLYGON_CHAIN_ID } from './accounts'
+import { chains, CHAIN_ID, getAccount } from './accounts'
 
-export const provider = Provider.Empty(POLYGON_CHAIN_ID)
+export const provider = Provider.Empty(CHAIN_ID)
 const txs = new Map<string, string>()
 
 export default async function issueTokens(contractAddress: string, beneficiaries: string[], tokens: (string | number)[], options: Partial<GasPriceOptions> = {}) {
