@@ -7,6 +7,7 @@ import yargs from 'yargs/yargs'
 import { hideBin } from 'yargs/helpers'
 import isEthereumAddress from 'validator/lib/isEthereumAddress'
 import issueTokens from './utils/issueTokens'
+import { gasSpeed } from './utils/getGasPrice'
 
 global.fetch = fetch
 
@@ -37,7 +38,7 @@ const argv = yargs(hideBin(process.argv))
   .option('speed', {
     alias: 's',
     description: 'The gas price use to send transactions',
-    choices: ['safeLow' , 'standard' , 'fast' , 'fastest'],
+    choices: gasSpeed,
     type: 'string'
   })
   .option('min-gas', {
