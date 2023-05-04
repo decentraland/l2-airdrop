@@ -58,7 +58,7 @@ createReadStream(resolve(process.cwd(), argv.input))
   .pipe(new Transform({
     decodeStrings: true,
     objectMode: true,
-    transform(chuck: Buffer, _encoding: string, callback) {
+    transform(line: Buffer, _encoding: string, callback) {
       if (!(this as any).addresses) {
         (this as any).addresses = []
       }
