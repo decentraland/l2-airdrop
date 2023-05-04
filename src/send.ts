@@ -68,11 +68,24 @@ createReadStream(resolve(process.cwd(), argv.input))
       }
 
       const addresses: string[] = (this as any).addresses
-      let [address, token] = chuck.toString().split(',')
-      if (
-        isEthereumAddress(address) &&
-        token && Number.isFinite(Number(token))
+      let [address, token] = line.toString().toLowerCase().split(',')
+
+      if (!isEthereumAddress(address)) {
+        console.log(`ignoring line "${line.toString()}" because is not a valid address`)
+
+      } else if (!token) {
+        console.log(`ignoring line "${line.toString()}" because no item id was provided`)
+
+      } else if (Number.isFinite(Number(token))) {
+        console.log(`ignoring line "${line.toString()}" because item id is not valid`)
+
+      } else if (
+        address === '0x000000000000000000000000000000000000dead' ||
+        address === '0x0000000000000000000000000000000000000000'
       ) {
+        console.log(`ignoring line "${line.toString()}" because items can't be minted to ${address}`)
+
+      } else {
         addresses.push([address, token].join(','))
       }
 
