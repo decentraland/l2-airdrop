@@ -1,4 +1,4 @@
-import type { ChainId } from '@dcl/schemas'
+import type { ChainId } from '@dcl/schemas/dist/dapps/chain-id'
 import { RPC_URLS } from "decentraland-connect/dist/connectors/NetworkConnector"
 import { JsonRpcProvider } from '@ethersproject/providers'
 import type { Wallet } from '@ethersproject/wallet'
