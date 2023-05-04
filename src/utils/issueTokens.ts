@@ -30,6 +30,6 @@ export default async function issueTokens(address: string, beneficiaries: string
   const tx = await account.sendTransaction({ to: contractAddress, data: encoded, gasLimit, gasPrice })
 
   txs.set(accountAddress!, tx.hash)
-  console.log(`new transaction: https://polygonscan.com/tx/${hash}`)
+  console.log(`new transaction: https://polygonscan.com/tx/${tx.hash}`)
   return tx.hash
 }
