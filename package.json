@@ -9,8 +9,7 @@
     "environment": "ts-node -r dotenv/config ./src/environment.ts",
     "tx": "ts-node -r dotenv/config ./src/transactions.ts",
     "send": "ts-node -r dotenv/config ./src/send.ts",
-    "opensea": "ts-node -r dotenv/config ./src/opensea.ts",
-    "rarible": "ts-node -r dotenv/config ./src/rarible.ts"
+    "transfer": "ts-node -r dotenv/config ./src/transfer.ts"
   },
   "repository": {
     "type": "git",
@@ -31,7 +30,7 @@
     "@types/isomorphic-fetch": "0.0.35",
     "@types/split": "^1.0.0",
     "@types/yargs": "^17.0.0",
-    "decentraland-connect": "^2.17.0",
+    "decentraland-connect": "^3.3.2",
     "decentraland-transactions": "^1.10.1",
     "dotenv": "^10.0.0",
     "eth-sig-util": "^3.0.1",

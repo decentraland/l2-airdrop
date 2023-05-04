@@ -12,10 +12,7 @@ This repository is a collection of command line tools to do massive Airdrops of 
 - :warning: [Warnings](#warnings)
 - [Airdrops](#airdrops): send wearables to a list of addresses
 - [Transactions](#transactions): inspect, cancel or speed up transactions
-- [Opensea](#opensea): download all the address from an opensea collection
-- [POAP](#poap): download all the address from a list of events ids
-- [Rarible](#rarible): download all the address from a rarible item
-- [Tutorial](#tutorial): watch a beginner's video tutorial by DOCTORdripp on how to use this script
+- [Tutorial](#tutorial): watch a beginner's video tutorial by DOCTORdripp on how to use this script 0e6934c (refactor!: remove opensea and rarible scrapers)
 
 &nbsp;
 
@@ -123,27 +120,7 @@ Inspect, cancel or speed up transactions
 
 &nbsp;
 
-## Opensea
-
-Download all the address from an opensea collection
-
-[See documentation](./src/opensea.md)
-
-## POAP
-
-Download all the address from a list of events ids
-
-[See documentation](./src/poap.md)
-
-## Rarible
-
-Download all the address from a rarible item
-
-[See documentation](./src/rarible.md)
-
-&nbsp; 
-
-## Tutorial ##
+## Tutorial
 
 A video demonstration and beginner's tutorial by DOCTORdripp. Learn how to bulk airdrop using this script now.
 
