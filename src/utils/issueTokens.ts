@@ -1,20 +1,15 @@
 import { Contract } from '@ethersproject/contracts'
-import { Wallet } from '@ethersproject/wallet'
-import { getContract, ContractName, sendMetaTransaction, Configuration } from 'decentraland-transactions'
+import { getContract, ContractName } from 'decentraland-transactions'
 import Provider from './Provider'
 import { GasPriceOptions, getGasPrice } from './getGasPrice'
-import { chains, CHAIN_ID, getAccount } from './accounts'
-import { ChainId } from '@dcl/schemas'
+import { chains, CHAIN_ID, getAccount, POLYGON_CHAIN_ID } from './accounts'
 
-export const POLYGON_CHAIN_ID = chains[CHAIN_ID]
 export const provider = Provider.Empty(POLYGON_CHAIN_ID)
 const txs = new Map<string, string>()
 
-export type IssueTokenOptions = GasPriceOptions
-
-export default async function issueTokens(address: string, beneficiaries: string[], tokens: (string | number)[], options: Partial<IssueTokenOptions> = {}) {
-  const data = { ...getContract(ContractName.ERC721CollectionV2, chains[CHAIN_ID]), address }
-  const contract = new Contract(data.address, data.abi)
+export default async function issueTokens(contractAddress: string, beneficiaries: string[], tokens: (string | number)[], options: Partial<GasPriceOptions> = {}) {
+  const data = getContract(ContractName.ERC721CollectionV2, chains[CHAIN_ID])
+  const contract = new Contract(contractAddress, data.abi)
   const pupulated = await contract.populateTransaction.issueTokens(beneficiaries, tokens)
   const encoded = pupulated.data!
   const account = await getAccount()!
