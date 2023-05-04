@@ -31,26 +31,26 @@ const argv = yargs(hideBin(process.argv))
   })
   .option('output', {
     alias: 'o',
-    description: 'The file to dump the output (default: stdout)',
+    description: 'The file to dump full logs (default: input file + .log))',
     type: 'string',
   })
   .option('speed', {
     alias: 's',
-    description: 'The gas price use to send the transaction [only with --transactions]',
+    description: 'The gas price use to send transactions',
     choices: ['safeLow' , 'standard' , 'fast' , 'fastest'],
     type: 'string'
   })
   .option('min-gas', {
-    description: 'Define a max value for gas price to send the transaction [only with --transactions]',
+    description: 'Define a max value for gas price to send transactions',
     type: 'number'
   })
   .option('max-gas', {
-    description: 'Define a min value for gas price to send the transaction [only with --transactions]',
+    description: 'Define a min value for gas price to send transactions',
     type: 'number'
   })
   .argv as any
 
-const output = argv.output ? createWriteStream(resolve(process.cwd(), argv.output), 'utf8') : process.stdout
+const output = createWriteStream(resolve(process.cwd(), argv.output || (argv.input + '.log')), 'utf8')
 createReadStream(resolve(process.cwd(), argv.input))
 
   .pipe(split())
