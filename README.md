@@ -10,9 +10,9 @@ This repository is a collection of command line tools to do massive Airdrops of 
 - [Installation](#installation)
 - [Setup](#setup)
 - :warning: [Warnings](#warnings)
-- [Airdrops](#airdrops): send wearables to a list of addresses
-- [Transactions](#transactions): inspect, cancel or speed up transactions
-- [Tutorial](#tutorial): watch a beginner's video tutorial by DOCTORdripp on how to use this script 0e6934c (refactor!: remove opensea and rarible scrapers)
+- [Command: `send`](./src/send.md): Send wearables to a list of addresses
+- [Command: `tx`](./src/transactions.md): Inspect, cancel or speed up transactions
+- [Tutorial](#tutorial): watch a beginner's video tutorial by DOCTORdripp on how to use this script
 
 &nbsp;
 
@@ -101,22 +101,6 @@ Go to [`https://builder.decentraland.org/collections`](https://builder.decentral
 ### :warning: Cancelling the command line execution doesn't cancel those transactions sent with it
 
 If for any reason you cancel the execution of the command line please take into account the any transaction sent is still running, if you restart the airdrop it will fail until all pending transactions complete.
-
-&nbsp;
-
-## Airdrops
-
-Send wearables to a list of addresses
-
-[See documentation](./src/send.md)
-
-&nbsp;
-
-## Transactions
-
-Inspect, cancel or speed up transactions
-
-[See documentation](./src/transactions.md)
 
 &nbsp;
 
