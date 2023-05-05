@@ -6,3 +6,14 @@ export function requiredEnv(name: string) {
 
   return value;
 }
+
+export function logError(err: Error) {
+  console.log()
+  console.log(' '.repeat(3), err.message)
+  console.log()
+}
+
+process.on('uncaughtException', (err: Error) => {
+  logError(err)
+  process.exit(1)
+});

@@ -1,7 +1,7 @@
-import { ChainId } from '@dcl/schemas';
+import { ChainId } from '@dcl/schemas/dist/dapps/chain-id';
 import { Wallet } from '@ethersproject/wallet';
 import Provider from './Provider';
-import { requiredEnv } from './env';
+import { requiredEnv } from './setup';
 import roundRobin from './roundRobin';
 
 

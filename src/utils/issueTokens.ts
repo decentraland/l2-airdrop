@@ -14,17 +14,33 @@ export default async function issueTokens(contractAddress: string, beneficiaries
   const encoded = pupulated.data!
   const account = await getAccount()!
   const accountAddress = await account.getAddress()
-  if (txs.has(accountAddress)) {
-    const hash = txs.get(accountAddress)!
-    console.log(`wating for transaction https://polygonscan.com/tx/${hash}`)
-    await provider.waitForTransaction(txs.get(accountAddress)!, 5)
+
+  const previousTx = txs.get(accountAddress)
+  if (previousTx) {
+    await provider.waitForTransaction(previousTx, 5)
   }
 
-  const gasPrice = await getGasPrice(options)
-  const gasLimit = await account.estimateGas({ to: contractAddress, data: encoded, gasPrice })
+  const gasPrice = await waitFor(() => getGasPrice(options))
+  const gasLimit = await waitFor(() => account.estimateGas({ to: contractAddress, data: encoded, gasPrice }))
   const tx = await account.sendTransaction({ to: contractAddress, data: encoded, gasLimit, gasPrice })
 
   txs.set(accountAddress!, tx.hash)
   console.log(`new transaction: https://polygonscan.com/tx/${tx.hash}`)
   return tx.hash
+}
+
+async function waitFor<T>(callback: () => Promise<T>): Promise<T> {
+  while (true) {
+    try {
+      const result = await callback()
+      return result
+    } catch (err) {
+      console.log((err as Error).message, 'retrying... (press crtl+c to exist)')
+      await delay(3000)
+    }
+  }
+}
+
+async function delay(time: number): Promise<void> {
+  return new Promise(resolve => setTimeout(resolve, time))
 }

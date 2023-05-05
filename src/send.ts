@@ -2,14 +2,16 @@ import { Transform } from 'stream'
 import split from 'split'
 import { createReadStream, createWriteStream } from 'fs'
 import { resolve } from 'path'
-import fetch from 'isomorphic-fetch'
+import fetch from 'node-fetch'
 import yargs from 'yargs/yargs'
 import { hideBin } from 'yargs/helpers'
 import isEthereumAddress from 'validator/lib/isEthereumAddress'
 import issueTokens from './utils/issueTokens'
 import { gasSpeed } from './utils/getGasPrice'
+import './utils/setup'
+import { logError } from './utils/setup'
 
-global.fetch = fetch
+global.fetch = fetch as any
 
 const argv = yargs(hideBin(process.argv))
   .option('input', {
@@ -126,4 +128,4 @@ createReadStream(resolve(process.cwd(), argv.input))
     }
   }))
   .pipe(output)
-  .on('error', (err) => console.error(err))
+  .on('error', logError)
