@@ -10,6 +10,7 @@ This repository is a collection of command line tools to do massive Airdrops of 
 - [Installation](#installation)
 - [Setup](#setup)
 - :warning: [Warnings](#warnings)
+- [Command: `environment`](./src/environment.md): Check current environment configuration
 - [Command: `send`](./src/send.md): Send wearables to a list of addresses
 - [Command: `tx`](./src/transactions.md): Inspect, cancel or speed up transactions
 - [Tutorial](#tutorial): watch a beginner's video tutorial by DOCTORdripp on how to use this script
