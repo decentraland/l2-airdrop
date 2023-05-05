@@ -1,7 +1,7 @@
-import { ChainId } from '@dcl/schemas';
+import { ChainId } from '@dcl/schemas/dist/dapps/chain-id';
 import { Wallet } from '@ethersproject/wallet';
 import Provider from './Provider';
-import { requiredEnv } from './env';
+import { requiredEnv } from './setup';
 import roundRobin from './roundRobin';
 
 
@@ -19,7 +19,10 @@ export const CHAIN_ID = Number(requiredEnv('CHAIN_ID')) as keyof typeof chains;
 export const ACCOUNT_PRIVATE_KEYS = requiredEnv('ACCOUNT_PRIVATE_KEY').split(',').map(key => Buffer.from(key, 'hex'));
 export const ACCOUNT_WALLETS = new Map(ACCOUNT_PRIVATE_KEYS.map(privateKey => {
   const wallet = new Wallet(privateKey);
-  return [wallet.address.toLowerCase(), wallet.connect(new Provider(wallet, chains[CHAIN_ID]))] as const;
+  return [
+    wallet.address.toLowerCase(),
+    wallet.connect(new Provider(wallet, chains[CHAIN_ID]))
+  ] as const;
 }));
 
 export const getAccount = roundRobin(Array.from(ACCOUNT_WALLETS.values()));

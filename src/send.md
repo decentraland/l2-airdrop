@@ -12,17 +12,16 @@ npm run send -- --help
 
 ```bash
 Options:
-      --help          Show help                                                  [boolean]
-      --version       Show version number                                        [boolean]
-  -i, --input         CSV file with the addresses to airdrop           [string] [required]
-  -b, --batch         The amount of items minted by transactions    [number] [default: 50]
-  -c, --contract      The collection address on polygon                [string] [required]
-  -o, --output        The file to dump the output (default: stdout)               [string]
-      --transactions  Send transactions directly to the blockchain               [boolean]
-  -s, --speed         The gas price use to send the transaction
-                              [string] [choices: "safeLow", "standard", "fast", "fastest"]
-      --min-gas       Define a max value for gas price to send the transaction    [number]
-      --max-gas       Define a min value for gas price to send the transaction    [number]
+      --help      Show help                                                       [boolean]
+      --version   Show version number                                             [boolean]
+  -i, --input     CSV file with the addresses to airdrop                [string] [required]
+  -c, --contract  The collection address on polygon                     [string] [required]
+  -b, --batch     The amount of items minted by transactions         [number] [default: 50]
+  -o, --output    The file to dump full logs (default: input file + .log))         [string]
+  -s, --speed     The gas price use to send transactions
+         [string] [choices: "safe", "safeLow", "low", "std", "standard", "fast", "fastest"]
+      --min-gas   Define a max value for gas price to send transactions            [number]
+      --max-gas   Define a min value for gas price to send transactions            [number]
 ```
 
 &nbsp;
@@ -36,7 +35,7 @@ Options:
 Send wearables with a gas limit of 50 per transaction
 
 ```bash
-npm run send -- --contract [COLLECTION_ADDRESS] --input address.csv --output transactions.output --speed fast --max-gas 50
+npm run send -- --contract [COLLECTION_ADDRESS] --input address.csv --speed fast --max-gas 250
 ```
 
 ```bash
@@ -52,26 +51,6 @@ waiting for transaction https://polygonscan.com/tx/0xffff...0000
 &nbsp;
 
 ---------
-
-&nbsp;
-
-### Send wearables using meta-transactions
-
-Send wearables with meta transactions
-
-```bash
-npm run send -- --contract [COLLECTION_ADDRESS] --input address.csv --output transactions.output --meta-transactions
-```
-
-```bash
-https://polygonscan.com/tx/0x1000...0000
-waiting for transaction https://polygonscan.com/tx/0x1000...0000
-https://polygonscan.com/tx/0x2000...0000
-waiting for transaction https://polygonscan.com/tx/0x2000...0000
-# ...
-https://polygonscan.com/tx/0xffff...0000
-waiting for transaction https://polygonscan.com/tx/0xffff...0000
-```
 
 &nbsp;
 

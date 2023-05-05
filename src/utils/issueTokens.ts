@@ -1,64 +1,46 @@
 import { Contract } from '@ethersproject/contracts'
-import { Wallet } from '@ethersproject/wallet'
-import { getContract, ContractName, sendMetaTransaction, Configuration } from 'decentraland-transactions'
+import { getContract, ContractName } from 'decentraland-transactions'
 import Provider from './Provider'
 import { GasPriceOptions, getGasPrice } from './getGasPrice'
 import { chains, CHAIN_ID, getAccount } from './accounts'
-import { ChainId } from '@dcl/schemas'
 
-export const POLYGON_CHAIN_ID = chains[CHAIN_ID]
-export const provider = Provider.Empty(POLYGON_CHAIN_ID)
+export const provider = Provider.Empty(CHAIN_ID)
 const txs = new Map<string, string>()
 
-export type IssueTokenOptions = GasPriceOptions & {
-  useMetaTransactions?: boolean
-}
-
-export default async function issueTokens(address: string, beneficiaries: string[], tokens: (string | number)[], options: Partial<IssueTokenOptions> = {}) {
-  const data = { ...getContract(ContractName.ERC721CollectionV2, chains[CHAIN_ID]), address }
-  const contract = new Contract(data.address, data.abi)
+export default async function issueTokens(contractAddress: string, beneficiaries: string[], tokens: (string | number)[], options: Partial<GasPriceOptions> = {}) {
+  const data = getContract(ContractName.ERC721CollectionV2, chains[CHAIN_ID])
+  const contract = new Contract(contractAddress, data.abi)
   const pupulated = await contract.populateTransaction.issueTokens(beneficiaries, tokens)
   const encoded = pupulated.data!
   const account = await getAccount()!
   const accountAddress = await account.getAddress()
-  if (txs.has(accountAddress)) {
-    const hash = txs.get(accountAddress)!
-    console.log(`wating for transaction https://polygonscan.com/tx/${hash}`)
-    await provider.waitForTransaction(txs.get(accountAddress)!, 5)
+
+  const previousTx = txs.get(accountAddress)
+  if (previousTx) {
+    await provider.waitForTransaction(previousTx, 5)
   }
 
-  let hash: string
-  if (options.useMetaTransactions) {
-    const [ ethereum, polygon ] = getProviders(getAccount(), CHAIN_ID)
-    hash = await sendMetaTransaction(ethereum, polygon, encoded, data, getConfiguration(CHAIN_ID))
-  } else {
-    const gasPrice = await getGasPrice(options)
-    const gasLimit = await account.estimateGas({ to: address, data: encoded, gasPrice })
-    const tx = await account.sendTransaction({ to: address, data: encoded, gasLimit, gasPrice })
-    hash = tx.hash
-  }
+  const gasPrice = await waitFor(() => getGasPrice(options))
+  const gasLimit = await waitFor(() => account.estimateGas({ to: contractAddress, data: encoded, gasPrice }))
+  const tx = await account.sendTransaction({ to: contractAddress, data: encoded, gasLimit, gasPrice })
 
-  txs.set(accountAddress!, hash)
-  console.log(`new transaction: https://polygonscan.com/tx/${hash}`)
-  return hash
+  txs.set(accountAddress!, tx.hash)
+  console.log(`new transaction: https://polygonscan.com/tx/${tx.hash}`)
+  return tx.hash
 }
 
-// metatransations
-function getConfiguration(chainId: ChainId): Partial<Configuration> {
-  if (
-    chainId === ChainId.MATIC_MAINNET ||
-    chainId === ChainId.ETHEREUM_MAINNET
-  ) {
-    return { serverURL: 'https://transactions-api.decentraland.org/v1' }
+async function waitFor<T>(callback: () => Promise<T>): Promise<T> {
+  while (true) {
+    try {
+      const result = await callback()
+      return result
+    } catch (err) {
+      console.log((err as Error).message, 'retrying... (press crtl+c to exist)')
+      await delay(3000)
+    }
   }
-
-  return {}
 }
 
-// metatransations
-function getProviders(wallet: Wallet, chainId: keyof typeof chains) {
-  return [
-    new Provider(wallet, chainId),
-    new Provider(wallet, chains[chainId])
-  ]
+async function delay(time: number): Promise<void> {
+  return new Promise(resolve => setTimeout(resolve, time))
 }

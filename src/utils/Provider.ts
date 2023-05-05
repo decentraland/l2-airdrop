@@ -1,14 +1,21 @@
-import type { ChainId } from '@dcl/schemas'
-import { RPC_URLS } from "decentraland-connect/dist/connectors/NetworkConnector"
+import type { ChainId } from '@dcl/schemas/dist/dapps/chain-id'
+import { ProviderType } from '@dcl/schemas/dist/dapps/provider-type'
+import { getRpcUrls } from 'decentraland-connect/dist/configuration'
 import { JsonRpcProvider } from '@ethersproject/providers'
 import type { Wallet } from '@ethersproject/wallet'
 import { signTypedData_v4 } from 'eth-sig-util'
 
 export default class Provider extends JsonRpcProvider {
+
+  static getUrls(chainId: ChainId) {
+    const urls = getRpcUrls(ProviderType.NETWORK);
+    return urls[chainId]
+  }
+
   static Empty(chainId: ChainId) {
     return new JsonRpcProvider(
       {
-        url: RPC_URLS[chainId],
+        url: Provider.getUrls(chainId),
         headers: { 'Referer': 'https://decentraland.org' }
       },
       chainId
@@ -20,7 +27,7 @@ export default class Provider extends JsonRpcProvider {
   constructor(wallet: Wallet, chainId: ChainId) {
     super(
       {
-        url: RPC_URLS[chainId],
+        url: Provider.getUrls(chainId),
         headers: { 'Referer': 'https://decentraland.org' }
       },
       chainId

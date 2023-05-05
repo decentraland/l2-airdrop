@@ -10,11 +10,8 @@ This repository is a collection of command line tools to do massive Airdrops of 
 - [Installation](#installation)
 - [Setup](#setup)
 - :warning: [Warnings](#warnings)
-- [Airdrops](#airdrops): send wearables to a list of addresses
-- [Transactions](#transactions): inspect, cancel or speed up transactions
-- [Opensea](#opensea): download all the address from an opensea collection
-- [POAP](#poap): download all the address from a list of events ids
-- [Rarible](#rarible): download all the address from a rarible item
+- [Command: `send`](./src/send.md): Send wearables to a list of addresses
+- [Command: `tx`](./src/transactions.md): Inspect, cancel or speed up transactions
 - [Tutorial](#tutorial): watch a beginner's video tutorial by DOCTORdripp on how to use this script
 
 &nbsp;
@@ -107,43 +104,7 @@ If for any reason you cancel the execution of the command line please take into 
 
 &nbsp;
 
-## Airdrops
-
-Send wearables to a list of addresses
-
-[See documentation](./src/send.md)
-
-&nbsp;
-
-## Transactions
-
-Inspect, cancel or speed up transactions
-
-[See documentation](./src/transactions.md)
-
-&nbsp;
-
-## Opensea
-
-Download all the address from an opensea collection
-
-[See documentation](./src/opensea.md)
-
-## POAP
-
-Download all the address from a list of events ids
-
-[See documentation](./src/poap.md)
-
-## Rarible
-
-Download all the address from a rarible item
-
-[See documentation](./src/rarible.md)
-
-&nbsp; 
-
-## Tutorial ##
+## Tutorial
 
 A video demonstration and beginner's tutorial by DOCTORdripp. Learn how to bulk airdrop using this script now.
 

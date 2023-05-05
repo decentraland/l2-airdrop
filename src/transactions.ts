@@ -1,10 +1,11 @@
-import fetch from 'isomorphic-fetch'
+import fetch from 'node-fetch'
 import yargs from 'yargs/yargs'
 import { hideBin } from 'yargs/helpers'
 import { cancelTransaction, getTransactionData, speedUpTransaction } from "./utils/transactions"
 import { formatUnits } from '@ethersproject/units'
+import './utils/setup'
 
-global.fetch = fetch
+global.fetch = fetch as any
 
 const argv = yargs(hideBin(process.argv))
   .option('tx', {

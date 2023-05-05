@@ -2,13 +2,16 @@ import { Transform } from 'stream'
 import split from 'split'
 import { createReadStream, createWriteStream } from 'fs'
 import { resolve } from 'path'
-import fetch from 'isomorphic-fetch'
+import fetch from 'node-fetch'
 import yargs from 'yargs/yargs'
 import { hideBin } from 'yargs/helpers'
 import isEthereumAddress from 'validator/lib/isEthereumAddress'
 import issueTokens from './utils/issueTokens'
+import { gasSpeed } from './utils/getGasPrice'
+import './utils/setup'
+import { logError } from './utils/setup'
 
-global.fetch = fetch
+global.fetch = fetch as any
 
 const argv = yargs(hideBin(process.argv))
   .option('input', {
@@ -31,30 +34,26 @@ const argv = yargs(hideBin(process.argv))
   })
   .option('output', {
     alias: 'o',
-    description: 'The file to dump the output (default: stdout)',
+    description: 'The file to dump full logs (default: input file + .log))',
     type: 'string',
-  })
-  .option('meta-transactions', {
-    alias: 'Send transactions directly to the blockchain',
-    type: 'boolean'
   })
   .option('speed', {
     alias: 's',
-    description: 'The gas price use to send the transaction [only with --transactions]',
-    choices: ['safeLow' , 'standard' , 'fast' , 'fastest'],
+    description: 'The gas price use to send transactions',
+    choices: gasSpeed,
     type: 'string'
   })
   .option('min-gas', {
-    description: 'Define a max value for gas price to send the transaction [only with --transactions]',
+    description: 'Define a max value for gas price to send transactions',
     type: 'number'
   })
   .option('max-gas', {
-    description: 'Define a min value for gas price to send the transaction [only with --transactions]',
+    description: 'Define a min value for gas price to send transactions',
     type: 'number'
   })
   .argv as any
 
-const output = argv.output ? createWriteStream(resolve(process.cwd(), argv.output), 'utf8') : process.stdout
+const output = createWriteStream(resolve(process.cwd(), argv.output || (argv.input + '.log')), 'utf8')
 createReadStream(resolve(process.cwd(), argv.input))
 
   .pipe(split())
@@ -62,17 +61,30 @@ createReadStream(resolve(process.cwd(), argv.input))
   .pipe(new Transform({
     decodeStrings: true,
     objectMode: true,
-    transform(chuck: Buffer, _encoding: string, callback) {
+    transform(line: Buffer, _encoding: string, callback) {
       if (!(this as any).addresses) {
         (this as any).addresses = []
       }
 
       const addresses: string[] = (this as any).addresses
-      let [address, token] = chuck.toString().split(',')
-      if (
-        isEthereumAddress(address) &&
-        token && Number.isFinite(Number(token))
+      let [address, token] = line.toString().toLowerCase().split(',')
+
+      if (!isEthereumAddress(address)) {
+        console.log(`ignoring line "${line.toString()}" because is not a valid address`)
+
+      } else if (!token) {
+        console.log(`ignoring line "${line.toString()}" because no item id was provided`)
+
+      } else if (Number.isFinite(Number(token))) {
+        console.log(`ignoring line "${line.toString()}" because item id is not valid`)
+
+      } else if (
+        address === '0x000000000000000000000000000000000000dead' ||
+        address === '0x0000000000000000000000000000000000000000'
       ) {
+        console.log(`ignoring line "${line.toString()}" because items can't be minted to ${address}`)
+
+      } else {
         addresses.push([address, token].join(','))
       }
 
@@ -104,7 +116,6 @@ createReadStream(resolve(process.cwd(), argv.input))
             speed: argv.speed || null,
             minGasPrice: argv['min-gas'] || null,
             maxGasPrice: argv['max-gas'] || null,
-            useMetaTransactions: !!argv['meta-transactions'],
           }
           const hash = await issueTokens(argv.contract, beneficieries, tokens, options)
           this.push(`https://polygonscan.com/tx/${hash}\n${chuck.map(c => '  ' + c + '\n').join('')}\n`)
@@ -117,4 +128,4 @@ createReadStream(resolve(process.cwd(), argv.input))
     }
   }))
   .pipe(output)
-  .on('error', (err) => console.error(err))
+  .on('error', logError)

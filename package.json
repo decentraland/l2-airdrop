@@ -3,14 +3,10 @@
   "version": "0.0.0-development",
   "description": "",
   "scripts": {
-    "poap": "ts-node -r dotenv/config ./src/poap.ts",
-    "market": "ts-node -r dotenv/config ./src/market.ts",
-    "mana": "ts-node -r dotenv/config ./src/mana.ts",
     "environment": "ts-node -r dotenv/config ./src/environment.ts",
     "tx": "ts-node -r dotenv/config ./src/transactions.ts",
     "send": "ts-node -r dotenv/config ./src/send.ts",
-    "opensea": "ts-node -r dotenv/config ./src/opensea.ts",
-    "rarible": "ts-node -r dotenv/config ./src/rarible.ts"
+    "transfer": "ts-node -r dotenv/config ./src/transfer.ts"
   },
   "repository": {
     "type": "git",
@@ -23,27 +19,28 @@
   },
   "homepage": "https://github.com/decentraland/l2-airdrop#readme",
   "dependencies": {
-    "@dcl/schemas": "^1.2.0",
+    "@dcl/schemas": "^6.18.0",
     "@ethersproject/contracts": "^5.4.1",
     "@ethersproject/providers": "^5.4.5",
     "@ethersproject/units": "^5.4.0",
     "@ethersproject/wallet": "^5.4.0",
-    "@types/isomorphic-fetch": "0.0.35",
-    "@types/split": "^1.0.0",
-    "@types/yargs": "^17.0.0",
-    "decentraland-connect": "^2.17.0",
-    "decentraland-transactions": "^1.10.1",
+    "ajv": "^8.12.0",
+    "decentraland-connect": "^3.6.0",
+    "decentraland-transactions": "^1.46.0",
     "dotenv": "^10.0.0",
     "eth-sig-util": "^3.0.1",
-    "isomorphic-fetch": "^3.0.0",
+    "node-fetch": "^2.6.9",
     "split": "^1.0.1",
-    "typescript": "^4.3.2",
-    "validator": "^13.6.0",
+    "validator": "^13.9.0",
     "yargs": "^17.0.1"
   },
   "devDependencies": {
+    "@types/node-fetch": "^2.6.3",
+    "@types/split": "^1.0.0",
     "@types/validator": "^13.1.3",
+    "@types/yargs": "^17.0.0",
     "prettier": "^2.3.0",
-    "ts-node": "^10.0.0"
+    "ts-node": "^10.0.0",
+    "typescript": "^4.3.2"
   }
 }
