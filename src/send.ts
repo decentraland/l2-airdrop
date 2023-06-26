@@ -75,7 +75,7 @@ createReadStream(resolve(process.cwd(), argv.input))
       } else if (!token) {
         console.log(`ignoring line "${line.toString()}" because no item id was provided`)
 
-      } else if (Number.isFinite(Number(token))) {
+      } else if (!Number.isFinite(Number(token))) {
         console.log(`ignoring line "${line.toString()}" because item id is not valid`)
 
       } else if (
