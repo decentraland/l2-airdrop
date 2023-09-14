@@ -1,5 +1,5 @@
 import { parseUnits } from '@ethersproject/units';
-import { BigNumberish } from '@ethersproject/bignumber';
+import { BigNumberish, BigNumber } from '@ethersproject/bignumber';
 import { provider } from './issueTokens';
 
 export type PricesData = {
@@ -46,28 +46,32 @@ function fromSpeed(prices: PricesData, speed: typeof gasSpeed[number]): number {
   }
 }
 
-export const MIN_MATIC_GAS_PRICE = parseUnits(String(30), 'gwei')
+export function parseGwei(value: number): BigNumber {
+  return parseUnits(String(value), 'gwei')
+}
+
+export const MIN_MATIC_GAS_PRICE = parseGwei(30)
 
 export async function getGasPrice(options: GasPriceOptions) {
   let gasPrice: BigNumberish;
   const req = await fetch(`https://gasstation.polygon.technology/v2`);
   const prices: PricesData = await req.json();
-  const safeLowGasPrice = parseUnits(fromSpeed(prices, 'safeLow').toString(), 'gwei')
+  const safeLowGasPrice = parseGwei(fromSpeed(prices, 'safeLow'))
   if (options.speed) {
-    gasPrice = parseUnits(fromSpeed(prices, options.speed).toString(), 'gwei');
+    gasPrice = parseGwei(fromSpeed(prices, options.speed));
   } else {
     gasPrice = await provider.getGasPrice();
   }
 
   if (options.minGasPrice) {
-    const minGasPrice = parseUnits(String(options.minGasPrice), 'gwei');
+    const minGasPrice = parseGwei(options.minGasPrice);
     if (gasPrice.lt(minGasPrice)) {
       gasPrice = minGasPrice;
     }
   }
 
   if (options.maxGasPrice) {
-    const maxGasPrice = parseUnits(String(options.maxGasPrice), 'gwei');
+    const maxGasPrice = parseGwei(options.maxGasPrice);
     if (gasPrice.gt(maxGasPrice)) {
       gasPrice = maxGasPrice;
     }
