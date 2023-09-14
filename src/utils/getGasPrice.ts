@@ -1,15 +1,25 @@
 import { parseUnits } from '@ethersproject/units';
-import { BigNumberish } from '@ethersproject/bignumber';
+import { BigNumberish, BigNumber } from '@ethersproject/bignumber';
 import { provider } from './issueTokens';
 
 export type PricesData = {
-  safeLow: number
-  standard: number
-  fast: number
-  fastest: number
-  blockTime: number
-  blockNumber: number
+  safeLow: {
+    maxPriorityFee: number, // 30.546032838,
+    maxFee: number, // 201.020433986
+  },
+  standard: {
+    maxPriorityFee: number, // 32.928849981,
+    maxFee: number, // 203.403251129
+  },
+  fast: {
+    maxPriorityFee: number, // 40.969618987,
+    maxFee: number, // 211.444020135
+  },
+  estimatedBaseFee: number, // 170.474401148,
+  blockTime: number, // 6,
+  blockNumber: number, // 47540253
 }
+
 
 export const gasSpeed = ['safe', 'safeLow', 'low', 'std', 'standard', 'fast', 'fastest'] as const
 
@@ -24,42 +34,44 @@ function fromSpeed(prices: PricesData, speed: typeof gasSpeed[number]): number {
     case 'safe':
     case 'safeLow':
     case 'low':
-      return prices.safeLow;
+      return Math.ceil(prices.safeLow.maxFee);
 
     case 'std':
     case 'standard':
-      return prices.standard;
+      return Math.ceil(prices.standard.maxFee);
 
     case 'fast':
-      return prices.fast;
-
     case 'fastest':
-      return prices.fastest;
+      return Math.ceil(prices.fast.maxFee);
   }
 }
 
-export const MIN_MATIC_GAS_PRICE = parseUnits(String(30), 'gwei')
+export function parseGwei(value: number): BigNumber {
+  return parseUnits(String(value), 'gwei')
+}
+
+export const MIN_MATIC_GAS_PRICE = parseGwei(30)
 
 export async function getGasPrice(options: GasPriceOptions) {
   let gasPrice: BigNumberish;
-  const req = await fetch(`https://gasstation-mainnet.matic.network/`);
+  const req = await fetch(`https://gasstation.polygon.technology/v2`);
   const prices: PricesData = await req.json();
-  const safeLowGasPrice = parseUnits(prices.safeLow.toString(), 'gwei')
+  const safeLowGasPrice = parseGwei(fromSpeed(prices, 'safeLow'))
   if (options.speed) {
-    gasPrice = parseUnits(fromSpeed(prices, options.speed).toString(), 'gwei');
+    gasPrice = parseGwei(fromSpeed(prices, options.speed));
   } else {
     gasPrice = await provider.getGasPrice();
   }
 
   if (options.minGasPrice) {
-    const minGasPrice = parseUnits(String(options.minGasPrice), 'gwei');
+    const minGasPrice = parseGwei(options.minGasPrice);
     if (gasPrice.lt(minGasPrice)) {
       gasPrice = minGasPrice;
     }
   }
 
   if (options.maxGasPrice) {
-    const maxGasPrice = parseUnits(String(options.maxGasPrice), 'gwei');
+    const maxGasPrice = parseGwei(options.maxGasPrice);
     if (gasPrice.gt(maxGasPrice)) {
       gasPrice = maxGasPrice;
     }

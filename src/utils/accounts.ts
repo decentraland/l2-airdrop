@@ -11,6 +11,7 @@ export const chains = {
   [ChainId.ETHEREUM_KOVAN]: ChainId.MATIC_MUMBAI,
   [ChainId.ETHEREUM_RINKEBY]: ChainId.MATIC_MUMBAI,
   [ChainId.ETHEREUM_GOERLI]: ChainId.MATIC_MUMBAI,
+  [ChainId.ETHEREUM_SEPOLIA]: ChainId.MATIC_MUMBAI,
   [ChainId.MATIC_MAINNET]: ChainId.MATIC_MAINNET,
   [ChainId.MATIC_MUMBAI]: ChainId.MATIC_MUMBAI,
 };
