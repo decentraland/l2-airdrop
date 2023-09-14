@@ -52,7 +52,7 @@ export async function getGasPrice(options: GasPriceOptions) {
   let gasPrice: BigNumberish;
   const req = await fetch(`https://gasstation.polygon.technology/v2`);
   const prices: PricesData = await req.json();
-  const safeLowGasPrice = parseUnits(prices.safeLow.toString(), 'gwei')
+  const safeLowGasPrice = parseUnits(fromSpeed(prices, 'safeLow').toString(), 'gwei')
   if (options.speed) {
     gasPrice = parseUnits(fromSpeed(prices, options.speed).toString(), 'gwei');
   } else {
