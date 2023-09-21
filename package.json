@@ -29,7 +29,7 @@
     "decentraland-transactions": "^1.47.0",
     "dotenv": "^10.0.0",
     "eth-sig-util": "^3.0.1",
-    "node-fetch": "^2.6.9",
+    "node-fetch": "^3.3.2",
     "split": "^1.0.1",
     "validator": "^13.9.0",
     "yargs": "^17.0.1"
