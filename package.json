@@ -36,7 +36,7 @@
   },
   "devDependencies": {
     "@types/node-fetch": "^2.6.3",
-    "@types/split": "^1.0.0",
+    "@types/split": "^1.0.5",
     "@types/validator": "^13.1.3",
     "@types/yargs": "^17.0.0",
     "prettier": "^2.3.0",
