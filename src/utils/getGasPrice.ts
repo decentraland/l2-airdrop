@@ -54,7 +54,7 @@ export const MIN_MATIC_GAS_PRICE = parseGwei(30)
 
 export async function getGasPrice(options: GasPriceOptions) {
   let gasPrice: BigNumberish;
-  const req = await fetch(`https://gasstation.polygon.technology/v2`);
+  const req = await fetch(`https://polygonscan.com/gastracker`);
   const prices: PricesData = await req.json();
   const safeLowGasPrice = parseGwei(fromSpeed(prices, 'safeLow'))
   if (options.speed) {
